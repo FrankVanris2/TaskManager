@@ -1,30 +1,9 @@
-public class Task {
-    private String description;
-    private boolean isCompleted;
-    private int priority;
-
-    // Constructor
-    public Task(String description, int priority, boolean isCompleted) {
-        this.description = description;
-        this.isCompleted = isCompleted;
-        this.priority = priority;
+public record Task(String description, int priority, boolean isCompleted) {
+    public Task markAsCompleted() {
+        return new Task(this.description, this.priority, true);
     }
 
-    /* A Method that marks tasks as completed */
-    public void markAsCompleted(boolean completed) {
-        this.isCompleted = completed;
-    }
-
-    /* My getter functions */
-    public String getDescription() {
-        return description;
-    }
-
-    public boolean isCompleted() {
-        return isCompleted;
-    }
-
-    public int getPriority() {
-        return priority;
+    public Task markAsUncompleted() {
+        return new Task(this.description, this.priority, false);
     }
 }
